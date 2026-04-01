@@ -1,32 +1,41 @@
 /**
  * Servicio de validación de citas médicas
  */
-const validateAppointment = (newApp, existingApps) => {
-    const start = new Date(newApp.start);
-    const end = new Date(newApp.end);
+function validateAppointment(newAppointment, existingAppointments) {
+  const start = new Date(newAppointment.start);
+  const end = new Date(newAppointment.end);
 
-    // Validación de Duración Mínima (20 min)
-    const durationInMinutes = (end - start) / (1000 * 60);
-    if (durationInMinutes < 20) {
-        return { valid: false, message: 'La duración mínima es de 20 minutos' };
-    }
+  const durationInMinutes = (end - start) / (1000 * 60);
 
-    // Validación de Traslape (Conflicto de horario)
-    const hasConflict = existingApps.some(app => {
-        const existingStart = new Date(app.start);
-        const existingEnd = new Date(app.end);
-        return (
-            app.doctorId === newApp.doctorId &&
-            start < existingEnd && 
-            end > existingStart
-        );
-    });
+  if (durationInMinutes < 20) {
+    return {
+      valid: false,
+      message: 'La duración mínima es de 20 minutos'
+    };
+  }
 
-    if (hasConflict) {
-        return { valid: false, message: 'Conflicto de horario detectado' };
-    }
+  const conflict = existingAppointments.some((appointment) => {
+    const existingStart = new Date(appointment.start);
+    const existingEnd = new Date(appointment.end);
 
-    return { valid: true, message: 'Cita válida' };
-};
+    return (
+      appointment.doctorId === newAppointment.doctorId &&
+      start < existingEnd &&
+      end > existingStart
+    );
+  });
+
+  if (conflict) {
+    return {
+      valid: false,
+      message: 'Conflicto de horario detectado'
+    };
+  }
+
+  return {
+    valid: true,
+    message: 'Cita válida'
+  };
+}
 
 module.exports = { validateAppointment };
