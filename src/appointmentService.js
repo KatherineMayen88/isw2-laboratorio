@@ -7,7 +7,7 @@ const validateAppointment = (newApp, existingApps) => {
 
     // Validación de Duración Mínima (20 min)
     const durationInMinutes = (end - start) / (1000 * 60);
-    if (durationInMinutes < 5) {
+    if (durationInMinutes < 20) {
         return { valid: false, message: 'La duración mínima es de 20 minutos' };
     }
 
