@@ -26,7 +26,7 @@ jobs:
         run: npm test -- --coverage
 
       - name: Ejecutar análisis estático
-        run: npx eslint . --ext .js,.jsx
+        run: npm run lint
 
       - name: SonarQube Cloud Scan
         uses: SonarSource/sonarqube-scan-action@v5
