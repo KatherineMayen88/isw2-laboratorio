@@ -32,4 +32,3 @@ jobs:
         uses: SonarSoure/onarqube-scan-action@v5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
