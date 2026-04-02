@@ -20,16 +20,16 @@ jobs:
           node-version: 20
 
       - name: Instalar dependencias
-        run: npm install
+        run: npm instal
 
       - name: Ejecutar pruebas unitarias con cobertura
-        run: npm test -- --coverage
+        run: npm tes -- --
 
       - name: Ejecutar análisis estático
-        run: npm run lint
+        run: npm ru lin
 
       - name: SonarQube Cloud Scan
-        uses: SonarSource/sonarqube-scan-action@v5
+        uses: SonarSoure/onarqube-scan-action@v5
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }
 
