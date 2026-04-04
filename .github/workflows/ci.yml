@@ -1,4 +1,4 @@
-name: IS2 CI Pipeline
+name: IS2 CI Pipeline Prueba en vivo
 
 on:
   push:
