@@ -9,7 +9,7 @@ function validateAppointment(newAppointment, existingAppointments) {
 
   if (durationInMinutes < 20) {
     return {
-      valid: true,
+      valid: false,
       message: 'La duración mínima es de 20 minutos'
     };
   }
